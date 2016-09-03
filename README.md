@@ -11,9 +11,10 @@ HtRod Arduino sketch is in HotRodtoUSB/
 Load this folder into your projects folder.
 
 Pin setup:
-DIN-6 Pin    Arduino Pin
----------   -------------
-    1           D2
-    3           GND
-    4           +5V
-    5           D3
+
+
+  DIN-6 Pin    Arduino Pin
+      1           D2
+      3           GND
+      4           +5V
+      5           D3
