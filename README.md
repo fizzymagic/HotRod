@@ -13,9 +13,7 @@ Load this folder into your projects folder.
 # SetupHotRod/
 This folder can be located elsewhere.  It contains Python scripts to configure the interface.
 
-Pin setup:
-
-
+# Pin setup:
     DIN-6 Pin    Arduino Pin
   
       1             D2
