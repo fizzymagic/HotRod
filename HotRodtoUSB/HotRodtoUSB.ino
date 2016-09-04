@@ -80,7 +80,8 @@ void getComms(void) {
 // Process the command string
 void processCommand(const uint8_t *buffer) {
   uint8_t cmd = toupper(*buffer);
-  uint8_t from, to, key;
+  uint8_t from, to;
+  int key;
   switch(cmd) {
     case 'M':
       Serial.print("Map ");
@@ -89,33 +90,34 @@ void processCommand(const uint8_t *buffer) {
           outputKeys[key] = to;
           Serial.print(from, HEX);
           Serial.print(" to ");
-          Serial.println(to, HEX);
+          Serial.print(to, HEX);
+          Serial.print(" ");
         }
         else {
-          Serial.println("unknown scan code");
+          Serial.print("unknown scan code$");
           return;
         }
       }
       else {
-        Serial.println("parse error");
+        Serial.print("parse error$");
         return;
       }
       break;
     case 'S':
       saveOutputKeys();
-      Serial.println("Save");
+      Serial.print("Save ");
       break;
     case 'R':
       resetOutputKeys();
-      Serial.println("Reset");
+      Serial.print("Reset ");
       break;
     case 'L':
       loadOutputKeys();
-      Serial.println("Reload");
+      Serial.print("Reload ");
       break;
     case '?':
-      Serial.println("HotRod");
-      break;
+      Serial.print("HotRod$");
+      return;
     case 'D':
       for (int i = 0; i < CODESIZE; i++) {
         Serial.print(i);
@@ -126,10 +128,10 @@ void processCommand(const uint8_t *buffer) {
       }
       break;
     default:
-      Serial.println("Unknown command");
+      Serial.print("Unknown command$");
       return;
   }
-  Serial.println("OK");
+  Serial.print("OK$");
 }
 
 // Binary search of key codes. 
