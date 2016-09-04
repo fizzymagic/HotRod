@@ -23,7 +23,8 @@ void setup() {
 }
 
 void loop() {
-  uint8_t i, ch, k;
+  int i;
+  uint8_t ch, k;
   // Wait for a scan code from the HotRod
   while (!HR.available()) {
     // Check to see if anything on serial port
@@ -32,22 +33,24 @@ void loop() {
     }
   }
   // F0 indicates that it will be a key release
-  if ((ch =HR.read()) == 0xF0) {
+  ch = HR.read();
+  if (ch == 0xF0) {
     breakMode = true;
     return;
   }
-  
   // Find the scan code in the table
-  if ((i = findScanCode(ch)) < 0) return;
-  
-  // Output the corresponding key to the USB
-  if ((k = outputKeys[i]) != 0) {
-    if (breakMode) {
-      Keyboard.release(k);
-      breakMode = false;
-    }
-    else {
-      Keyboard.press(k);
+  i = findScanCode(ch);
+  if (i >= 0) {
+    // Output the corresponding key to the USB
+    k = outputKeys[i];
+    if (k != 0) {
+      if (breakMode) {
+        Keyboard.release(k);
+        breakMode = false;
+      }
+      else {
+        Keyboard.press(k);
+      }
     }
   }
 }
