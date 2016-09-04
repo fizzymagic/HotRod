@@ -63,7 +63,7 @@ void getComms(void) {
   static uint8_t buffer[BUFFERSIZE];
   while (Serial.available() > 0) {
     uint8_t ch = Serial.read();
-    if (ch == END_COMMAND) {
+    if (ch == END_COMMAND || ch == 0) {
       buffer[offset] = 0;
       offset = 0;
       processCommand(buffer);
