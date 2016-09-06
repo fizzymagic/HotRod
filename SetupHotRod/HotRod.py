@@ -140,7 +140,11 @@ def findHotRod():
             if not t.isAlive():
                 finished = True
                 break
-    return [r for r in results if len(r) > 1][0]
+    result =  [r for r in results if len(r) > 1]
+    if len(result) > 0:
+        return result[0]
+    else:
+        return None
                     
     
     

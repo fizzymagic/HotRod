@@ -7,16 +7,19 @@ inputFile = files[0]
 
 HRPort = HotRod.findHotRod()
 if not HRPort:
+    print "No HotRod found."
     exit(1)
 else:
-    print "HotRod found on port %s" % HRPort
+    print "HotRod found on port %s." % HRPort
    
 with open(inputFile, 'r') as f:
-    lines = [l.strip().upper() for l in f.readlines() if len(l) > 1]
+    lines = [l.strip()for l in f.readlines() if len(l) > 1]
     
 commands = []    
 for l in lines:
     a = l.split()
+    a[0] = a[0].upper()
+    a[1] = a[1].upper()
     if a[0] == 'M':
         if a[1] in HotRod.HRCodes.keys():
             a[1] = "%02X" % HotRod.HRCodes[a[1]]
@@ -26,7 +29,7 @@ for l in lines:
         if a[2] in HotRod.KBKeys.keys():
             a[2] = "%02X" % HotRod.KBKeys[a[2]]
         elif len(a[2]) == 1:
-            a[2] = "%02X" % (ord(a[2].lower()))
+            a[2] = "%02X" % (ord(a[2]))
         elif len(a[2]) != 2:
             print "Bad code %s" % a[2]
             break
