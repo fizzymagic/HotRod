@@ -27,7 +27,7 @@
 
 #ifndef HotRod_h
 #define HotRod_h
-
+#include <Keyboard.h>
 #define CODESIZE  26
 extern const uint8_t HotRodCodes[CODESIZE] PROGMEM;
 extern const uint8_t DefaultKeys[CODESIZE] PROGMEM;

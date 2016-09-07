@@ -1,3 +1,4 @@
+#include <Keyboard.h>
 #include <stdlib.h>
 #include <Arduino.h>
 #include <HotRod.h>
