@@ -140,12 +140,10 @@ void hrinterrupt(void)
 		incoming = 0;
 	}
 	prev_ms = now_ms;
-	n = bitcount - 1;
-	if (n <= 7) {
-		incoming |= (val << n);
+	if (bitcount <= 8) {
+		incoming |= (val << (bitcount - 1));
 	}
-	bitcount++;
-	if (bitcount == 11) {
+	if (++bitcount == 11) {
 		uint8_t i = head + 1;
 		if (i >= BUFFER_SIZE) i = 0;
 		if (i != tail) {
@@ -163,8 +161,7 @@ static inline uint8_t get_scan_code(void)
 	uint8_t c, i;
 	i = tail;
 	if (i == head) return 0;
-	i++;
-	if (i >= BUFFER_SIZE) i = 0;
+	if (++i >= BUFFER_SIZE) i = 0;
 	c = buffer[i];
 	tail = i;
 	return c;

@@ -16,16 +16,24 @@ uint8_t scanCodes[CODESIZE];
 uint8_t outputKeys[CODESIZE];
 bool breakMode = false;
 
+// Initial setup function
 void setup() {
   Serial.begin(9600);
+  // Load the scan codes from PROGMEM into RAM
   loadScanCodes();
+  // Load the current key mapping from EEPROM or PROGMEM
   loadOutputKeys();
+  // Start receiving data from the HotRod
   HR.begin(DATA_PIN, CLOCK_PIN);
+  pinMode(9, OUTPUT);
+  digitalWrite(9, HIGH);
 }
 
+// The main loop that is always running
 void loop() {
   int i;
   uint8_t ch, k;
+  
   // Wait for a scan code from the HotRod
   while (!HR.available()) {
     // Check to see if anything on serial port
@@ -45,6 +53,8 @@ void loop() {
     // Output the corresponding key to the USB
     k = outputKeys[i];
     if (k != 0) {
+      digitalWrite(9, LOW);
+      
       if (breakMode) {
         Keyboard.release(k);
         breakMode = false;
@@ -52,6 +62,7 @@ void loop() {
       else {
         Keyboard.press(k);
       }
+      digitalWrite(9, HIGH);
     }
   }
 }

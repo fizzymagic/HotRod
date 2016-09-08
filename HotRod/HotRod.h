@@ -1,5 +1,6 @@
 /*
   HotRod.h - HotRod game controller library
+  Highly modified version of:
   
   PS2Keyboard.h - PS2Keyboard library
   Copyright (c) 2007 Free Software Foundation.  All right reserved.
@@ -47,7 +48,7 @@ class HotRod {
     /**
      * Starts the keyboard "service" by registering the external interrupt.
      * setting the pin modes correctly and driving those needed to high.
-     * The propably best place to call this method is in the setup routine.
+     * The probably best place to call this method is in the setup routine.
      */
     static void begin(uint8_t dataPin, uint8_t irq_pin);
     
