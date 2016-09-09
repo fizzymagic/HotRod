@@ -13,18 +13,19 @@ can use the keyboard, including Windows, Mac OS, and Linux.
 Getting the entire thing working requires:
 
 - 32u4-based arduino clone.  I recommand the Pololu A-Star series, but it should work with any 32u4-based board.
--- The Arduino needs a Caterina (or equivalent) bootloader in it.  The Arduino Micro and the A-Star both have this as the default.
+  - The Arduino needs a Caterina (or equivalent) bootloader in it.  The Arduino Micro and the A-Star both have this as the default.
 - Arduino 1.6.9 or later IDE
 - A 6-pin mini DIN connecter (aka a PS/2 keyboard connector)
 - A completed circuit board with the appropriate wires from the DIN connector to the Arduino.  
   You can get a board from OSH Park
 - Python 2.7.9 or later.
--- The pyserial library must be installed on the system.
+  - The pyserial library must be installed on the system.
 
 ## Getting Started
 
 1. Wire the PS/2 connector to the Arduino, or populate the board.
   - The board design is in the **Hardware/** folder.
+  - The board can be obtained from OSH Park [here](https://oshpark.com/shared_projects/7dNfPtaw) 
 2. Copy the **HotRod/** folder into the Arduino **libraries/** folder in your Arduino user space. 
    If necessary, you may need to create the **libraries** folder.
 3. Copy the **HotRodtoUSB/** folder into the Arduino user space.
@@ -35,12 +36,43 @@ Getting the entire thing working requires:
 ## Using the HotRod-to-USB adapter
 
 
+## Serial Command Set
+
+- **M <scancode> <key>**: Map a scan code to a keyboard key
+  - The scan code and keyboard key can be specified in ways:
+    1. As a macro (all macros are defined in HotRod.py)
+    2. As a 2-digit hexadecimal number
+  - Additionally, the keyboard key can be specified:
+    3. As an ASCII character
+- **S**: Save the current key mapping to EEPROM
+- **R**: Reset the key mapping to the original
+- **L**: Load a key mapping from EEPROM
+- **D**: Dump the current key mapping
+- **?**: Echo "HotRod" to serial port
+
+### Examples:
+
+<tt>M HR_LEFT_JOYSTICK_UP KB_UP_ARROW<tt>
+
+Maps the left joystick up to the keyboard up arrow.
+
+<tt>M 75 DA</tt>
+
+Also maps the left joystick up to the keyboard up arrow.
+
+<tt>M HR_LEFT_JOYSTICK_UP i</tt>
+
+Maps the left joystick up to the ASCII i
+
+
+
 ## Additional Information
 
 ### Pin setup:
-    DIN-6 Pin    Arduino Pin
-  
-      1             D2
-      3             GND
-      4             +5V
-      5             D3
+
+```
+DIN-6 Pin    Arduino Pin
+   1             D2
+   3             GND
+   4             +5V
+   5             D3```
