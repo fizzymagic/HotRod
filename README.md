@@ -15,7 +15,7 @@ Getting the entire thing working requires:
 - 32u4-based arduino clone.  I recommand the Pololu A-Star series, but it should work with any 32u4-based board.
   - The Arduino needs a Caterina (or equivalent) bootloader in it.  The Arduino Micro and the A-Star both have this as the default.
 - Arduino 1.6.9 or later IDE
-- A 6-pin mini DIN connecter (aka a PS/2 keyboard connector)
+- A 6-pin female mini DIN connecter (aka a PS/2 keyboard connector)
 - A completed circuit board with the appropriate wires from the DIN connector to the Arduino.  
   You can get a board from OSH Park
 - Python 2.7.9 or later.
@@ -72,4 +72,5 @@ DIN-6 Pin    Arduino Pin
    1             D2
    3             GND
    4             +5V
-   5             D3```
+   5             D3
+```
