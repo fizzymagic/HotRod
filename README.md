@@ -38,7 +38,7 @@ Getting the entire thing working requires:
 
 ## Serial Command Set
 
-- **M <scancode> <key>**: Map a scan code to a keyboard key
+- **M sc kb**: Map scan code *sc* to  keyboard key *kb*
   - The scan code and keyboard key can be specified in ways:
     1. As a macro (all macros are defined in HotRod.py)
     2. As a 2-digit hexadecimal number
@@ -52,17 +52,14 @@ Getting the entire thing working requires:
 
 ### Examples:
 
-<tt>M HR_LEFT_JOYSTICK_UP KB_UP_ARROW<tt>
-
+```M HR_LEFT_JOYSTICK_UP KB_UP_ARROW```  
 Maps the left joystick up to the keyboard up arrow.
 
-<tt>M 75 DA</tt>
-
+```M 75 DA```  
 Also maps the left joystick up to the keyboard up arrow.
 
-<tt>M HR_LEFT_JOYSTICK_UP i</tt>
-
-Maps the left joystick up to the ASCII i
+```M HR_LEFT_JOYSTICK_UP i```  
+Maps the left joystick up to ASCII 'i'
 
 
 
