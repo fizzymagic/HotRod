@@ -18,6 +18,8 @@ with open(inputFile, 'r') as f:
 commands = []    
 for l in lines:
     a = l.split()
+    if len(a) == 0 or a[0][0] == '#':
+        continue
     a[0] = a[0].upper()
     a[1] = a[1].upper()
     if a[0] == 'M':
