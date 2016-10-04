@@ -1,19 +1,49 @@
 import sys, serial
 import HotRod
 
-flags = [f for f in sys.argv[1:] if f[0] == '-']
-files = [f for f in sys.argv[1:] if f[0] != '-']
-inputFile = files[0]
 
-HRPort = HotRod.findHotRod()
-if not HRPort:
-    print "No HotRod found."
-    exit(1)
-else:
-    print "HotRod found on port %s." % HRPort
-   
-with open(inputFile, 'r') as f:
-    lines = [l.strip()for l in f.readlines() if len(l) > 1]
+def processCmdline(args):
+    i = 0
+    flags = []
+    files = []
+    port = ''
+    while i < len(args):
+        if args[i][0] = '-':
+            if args[i][1] == 'p':
+                i += 1
+                port = args[i]
+            else:
+                flags.append(args[i])
+        else:
+            files.append(args[i])
+        i += 1
+    return (flags, files, port)
+    
+
+if len(sys.argv) == 0:
+    print "Usage:"
+    print "  SetupHotRod.py [-p portname] [-s] [-d] [-r] cmdFile ..."
+    print "     -p  specify serial port, e.g. COM3 for Windows, /dev/ttyS2 for linux and Mac"
+    print "         if not specified port will be autodetected"
+    print "     -s  save mapping to EEPROM"
+    print "     -d  dump current mapping"
+    print "     -r  reset mapping to default"
+    print "     -l  reinitialize mapping from EEPROM"
+            
+flags, files, HRPort = processCmdline(sys.argv[1:])
+
+if len(HRPort == 0):
+    HRPort = HotRod.findHotRod()
+    if not HRPort:
+        print "No HotRod found."
+        exit(1)
+    else:
+        print "HotRod found on port %s." % HRPort
+
+lines = []
+for inputFile in files:        
+    with open(inputFile, 'r') as f:
+        lines.extend([l.strip()for l in f.readlines() if len(l) > 1])
     
 commands = []    
 for l in lines:
@@ -39,7 +69,9 @@ for l in lines:
     else:
         cmd = a[0]
     commands.append(cmd)
-    
+   
+if '-r' in flags:
+    commands.append('R')
 if '-d' in flags:
     commands.append('D')
 if '-s' in flags:

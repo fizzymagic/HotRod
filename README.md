@@ -35,6 +35,9 @@ Getting the entire thing working requires:
    
 ## Using the HotRod-to-USB adapter
 
+## Using SetupHotRod.py
+
+You will need Python 2.7.9 or later, with the ```pyserial``` library installed.
 
 ## Serial Command Set
 
@@ -60,8 +63,6 @@ Also maps the left joystick up to the keyboard up arrow.
 
 ```M HR_LEFT_JOYSTICK_UP i```  
 Maps the left joystick up to ASCII 'i'
-
-
 
 ## Additional Information
 
