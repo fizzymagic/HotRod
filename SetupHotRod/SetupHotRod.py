@@ -22,13 +22,14 @@ def processCmdline(args):
 
 if len(sys.argv) == 0:
     print "Usage:"
-    print "  SetupHotRod.py [-p portname] [-s] [-d] [-r] cmdFile ..."
+    print "  SetupHotRod.py [-p portname] [-s] [-d] [-r] [cmdFile] ..."
+    print "     cmdFile  Name of one or more serial commands file(s).  Not required."
     print "     -p  specify serial port, e.g. COM3 for Windows, /dev/ttyS2 for linux and Mac"
     print "         if not specified port will be autodetected"
-    print "     -s  save mapping to EEPROM"
-    print "     -d  dump current mapping"
-    print "     -r  reset mapping to default"
-    print "     -l  reinitialize mapping from EEPROM"
+    print "     -s  save mapping to EEPROM after processing file"
+    print "     -d  dump current mapping after processing file"
+    print "     -r  reset mapping to default before processing file"
+    print "     -l  reinitialize mapping from EEPROM before processing file"
             
 flags, files, HRPort = processCmdline(sys.argv[1:])
 
@@ -70,8 +71,10 @@ for l in lines:
         cmd = a[0]
     commands.append(cmd)
    
+if '-l' in flags:
+    commands.insert(0, 'L')
 if '-r' in flags:
-    commands.append('R')
+    commands.insert(0, 'R')
 if '-d' in flags:
     commands.append('D')
 if '-s' in flags:

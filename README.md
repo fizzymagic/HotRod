@@ -37,9 +37,26 @@ Getting the entire thing working requires:
 
 ## Using SetupHotRod.py
 
+This Python script will automatically send commands to the HotRod interface from a file.  You can
+save various configurations in command files to quickly load new controller configurations.
+
 You will need Python 2.7.9 or later, with the ```pyserial``` library installed.
 
-## Serial Command Set
+### Command Line
+
+```python SetupHotRod.py [-p *portname*] [-s] [-d] [-r] [*cmdFile*] ...```
+```    cmdFile - Name of one or more serial command file(s).  Not required.``` 
+```    -p  specify serial port, e.g. COM3 for Windows, /dev/ttyS2 for linux and Mac```
+```        if not specified port will be autodetected```
+```    -s  save mapping to EEPROM after processing file```
+```    -d  dump current mapping after processing file```
+```    -r  reset mapping to default before processing file```
+```    -l  reinitialize mapping from EEPROM before processing file```
+
+### Serial Command Set
+
+The following commands are available to be sent to the HotRod interface from SetupHotRod.py; the input file
+should consist of one command per line.
 
 - **M sc kb**: Map scan code *sc* to  keyboard key *kb*
   - The scan code and keyboard key can be specified in ways:
@@ -48,7 +65,7 @@ You will need Python 2.7.9 or later, with the ```pyserial``` library installed.
   - Additionally, the keyboard key can be specified:
     3. As an ASCII character
 - **S**: Save the current key mapping to EEPROM
-- **R**: Reset the key mapping to the original
+- **R**: Reset the key mapping to the original (in PROGMEM)
 - **L**: Load a key mapping from EEPROM
 - **D**: Dump the current key mapping
 - **?**: Echo "HotRod" to serial port
