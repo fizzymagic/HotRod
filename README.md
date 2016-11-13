@@ -82,6 +82,13 @@ Also maps the left joystick up to the keyboard up arrow.
 ```M HR_LEFT_JOYSTICK_UP i```  
 Maps the left joystick up to ASCII 'i'
 
+### Included command files
+
+- SE_MAME_default.hrm
+  - Default MAME configuration for 2 players.
+- SE_MAME_2joy.hrm
+  - Default MAME configuration for 2-joystick games.
+
 ## Additional Information
 
 ### Pin setup:
