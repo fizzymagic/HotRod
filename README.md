@@ -46,8 +46,8 @@ You will need Python 2.7.9 or later, with the ```pyserial``` library installed.
 
 <pre>python SetupHotRod.py [-p portname] [-s] [-d] [-r] [cmdFile] ...
          cmdFile  Name of one or more serial commands file(s).  Not required.
-        -p  specify serial port, e.g. COM3 for Windows, /dev/ttyS2 for linux and Mac
-            if not specified port will be autodetected
+         -p  specify serial port, e.g. COM3 for Windows, /dev/ttyS2 for linux and Mac
+             if not specified port will be autodetected
          -s  save mapping to EEPROM after processing file
          -d  dump current mapping after processing file
          -r  reset mapping to default before processing file
