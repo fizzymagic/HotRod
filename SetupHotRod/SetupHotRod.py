@@ -8,7 +8,7 @@ def processCmdline(args):
     files = []
     port = ''
     while i < len(args):
-        if args[i][0] = '-':
+        if args[i][0] == '-':
             if args[i][1] == 'p':
                 i += 1
                 port = args[i]
@@ -33,7 +33,7 @@ if len(sys.argv) == 0:
             
 flags, files, HRPort = processCmdline(sys.argv[1:])
 
-if len(HRPort == 0):
+if len(HRPort) == 0:
     HRPort = HotRod.findHotRod()
     if not HRPort:
         print "No HotRod found."
